@@ -14,7 +14,7 @@ An interactive website for learning common coding patterns and algorithms. The w
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/coding-patterns-website.git
+git clone https://github.com/syaddays/coding-patterns-website.git
 cd coding-patterns-website
 ```
 
@@ -34,24 +34,16 @@ http://localhost:8000
 
 ```
 coding-patterns-website/
-├── index.html          # Main HTML file
-├── styles.css          # Stylesheet
-├── script.js           # JavaScript functionality
-└── content/           # Pattern content
-    └── patterns.json  # Pattern definitions
-    └── sliding-window/
-    └── two-pointers/
-    └── ...
+|-- index.html          # Main HTML file
+|-- styles.css          # Stylesheet
+|-- script.js           # JavaScript functionality
+|-- content/            # Pattern content
+    |-- patterns.json   # Pattern definitions
+    |-- sliding-window/
+    |-- two-pointers/
+    |-- ...
 ```
-
-## Contributing
-
-Feel free to contribute by:
-1. Adding new patterns
-2. Improving existing examples
-3. Fixing bugs
-4. Enhancing the UI/UX
 
 ## License
 
-MIT License - feel free to use this in your own projects! 
+MIT License - feel free to use this in your own projects!
