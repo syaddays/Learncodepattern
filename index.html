@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grokking the Coding Interview - Learning Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Coding Patterns</h2>
+                <button id="toggleSidebar" aria-label="Toggle Sidebar">☰</button>
+            </div>
+            <div class="patterns-list" id="patternsList">
+                <!-- Patterns will be loaded here dynamically -->
+                <div class="loading-indicator">Loading patterns...</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="disclaimer" id="disclaimer">
+                <h1>Welcome to Grokking the Coding Interview - Learning Platform</h1>
+                <div class="disclaimer-content">
+                    <h2>Educational Purpose Disclaimer</h2>
+                    <p>This website is created solely for educational purposes and free learning. It is based on the content from educative.io's "Grokking the Coding Interview" course.</p>
+                    <p>This platform aims to:</p>
+                    <ul>
+                        <li>Facilitate learning of coding patterns</li>
+                        <li>Provide easy access to coding solutions in multiple languages</li>
+                        <li>Help track your learning progress</li>
+                    </ul>
+                    <p>No commercial intent is involved. All rights belong to their respective owners.</p>
+                    <div class="get-started">
+                        <p>To get started, select a pattern from the sidebar and choose a problem to study.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-frame" id="contentFrame">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
