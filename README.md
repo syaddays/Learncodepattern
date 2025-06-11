@@ -14,8 +14,8 @@ An interactive website for learning common coding patterns and algorithms. The w
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/syaddays/coding-patterns-website.git
-cd coding-patterns-website
+git clone https://github.com/syaddays/Grokking-the-coding-interview-by-Educative.io.git
+cd Grokking-the-coding-interview-by-Educative.io
 ```
 
 2. Start a local server:
