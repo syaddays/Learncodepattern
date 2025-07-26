@@ -25,7 +25,7 @@ function updateProgress(patternId, questionsCount, progressElement) {
 // Function to load patterns data
 async function loadPatternsData() {
     try {
-        const response = await fetch('/content/patterns.json');
+        const response = await fetch('content/patterns.json');
         if (!response.ok) throw new Error('Failed to load patterns data');
         return await response.json();
     } catch (error) {
@@ -154,10 +154,10 @@ async function loadContent(pattern, problem) {
         
         // Construct paths for both possible formats
         const paths = [
-            `/content/${pattern}/${problem}/${language}.html`,  // without difficulty
-            `/content/${pattern}/${problem}-(easy)/${language}.html`,
-            `/content/${pattern}/${problem}-(medium)/${language}.html`,
-            `/content/${pattern}/${problem}-(hard)/${language}.html`
+            `content/${pattern}/${problem}/${language}.html`,  // without difficulty
+            `content/${pattern}/${problem}-(easy)/${language}.html`,
+            `content/${pattern}/${problem}-(medium)/${language}.html`,
+            `content/${pattern}/${problem}-(hard)/${language}.html`
         ];
         
         // Try each path until one works
