@@ -9,6 +9,9 @@ An interactive website for learning common coding patterns and algorithms. The w
 - Interactive UI with syntax highlighting
 - Progress tracking
 - Mobile-responsive design
+- Fixed navigation buttons for seamless learning flow
+- Improved code editor display and functionality
+- Cleaner UI with unnecessary elements removed
 
 ## Setup
 
@@ -36,13 +39,22 @@ http://localhost:8000
 coding-patterns-website/
 |-- index.html          # Main HTML file
 |-- styles.css          # Stylesheet
+|-- custom.css          # Custom styles for UI fixes
 |-- script.js           # JavaScript functionality
+|-- custom.js           # Custom JavaScript for navigation fixes
 |-- content/            # Pattern content
     |-- patterns.json   # Pattern definitions
     |-- sliding-window/
     |-- two-pointers/
     |-- ...
 ```
+
+## Recent Fixes
+
+1. **Navigation Buttons**: Fixed "Back" and "Next" buttons to work with local file structure
+2. **Code Editor**: Improved Monaco editor display and functionality
+3. **Cleaner UI**: Removed unnecessary elements like "DISCUSS", "Send feedback", and "Recommendations"
+4. **Local Navigation**: Navigation now works without external links to educative.io
 
 ## License
 

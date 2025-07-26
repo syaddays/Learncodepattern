@@ -1,0 +1,244 @@
+/* Custom CSS to fix navigation buttons and remove unwanted elements */
+
+/* Hide the "Stuck? Get help on DISCUSS" section */
+.styles__DiscoursePanelStyled-xkmgwv-0,
+.styles__Footer-sc-1nn0wjq-6 {
+    display: none !important;
+}
+
+/* Hide the "Send feedback" and "Recommendations" section */
+.styles__MenuWrapper-sc-10egof-6,
+#recomentation_menu_wrapper,
+.styles__Wrapper-sc-10egof-5,
+#feedback_menu,
+.styles__RecommendationWidgetStyled-sc-10egof-0 {
+    display: none !important;
+}
+
+/* Improved content readability */
+.content-frame {
+    line-height: 1.6;
+    font-size: 16px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.content-frame h1, .content-frame h2, .content-frame h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+}
+
+.content-frame p {
+    margin-bottom: 1.2em;
+}
+
+.content-frame ul, .content-frame ol {
+    padding-left: 2em;
+    margin-bottom: 1.2em;
+}
+
+.content-frame li {
+    margin-bottom: 0.5em;
+}
+
+/* Responsive images */
+.content-frame img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5em auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Code blocks */
+.content-frame pre {
+    background-color: #1e293b;
+    border-radius: 8px;
+    padding: 1.25em;
+    margin: 1.5em 0;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.content-frame code {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.9em;
+}
+
+.content-frame pre code {
+    display: block;
+    line-height: 1.5;
+    tab-size: 2;
+}
+
+/* Tables */
+.content-frame table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    overflow-x: auto;
+    display: block;
+}
+
+.content-frame table th,
+.content-frame table td {
+    border: 1px solid #e2e8f0;
+    padding: 0.75em;
+    text-align: left;
+}
+
+.content-frame table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+}
+
+.content-frame table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Blockquotes */
+.content-frame blockquote {
+    border-left: 4px solid #3b82f6;
+    padding: 0.5em 1em;
+    margin: 1.5em 0;
+    background-color: #f8fafc;
+    border-radius: 0 4px 4px 0;
+}
+
+.content-frame blockquote p {
+    margin: 0.5em 0;
+    font-style: italic;
+    color: #4b5563;
+}
+
+/* Fix navigation buttons */
+.styles__PrevNextButtonWidgetStyled-sc-1j2nu8t-0 {
+    display: none !important;
+}
+
+/* Navigation buttons */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 15px;
+}
+
+.navigation-buttons button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-buttons button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navigation-buttons button:disabled {
+    background-color: #93c5fd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Style the navigation links */
+.styles__Link-sc-1j2nu8t-8 {
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+    display: inline-block;
+}
+
+.styles__Link-sc-1j2nu8t-8:hover {
+    background-color: #dbeafe;
+}
+
+/* Fix the "Mark as Completed" checkbox */
+.styles__Checkbox-sc-1j2nu8t-1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+/* Fix the monaco editor */
+.monaco-editor,
+.monaco-editor .overflow-guard,
+.monaco-editor .monaco-scrollable-element {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 300px !important;
+}
+
+/* Fix Monaco editor span display issues */
+.monaco-editor .mtk1,
+.monaco-editor .mtk6,
+.monaco-editor .mtk9,
+.monaco-editor .mtk22 {
+    display: inline-block;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    white-space: pre;
+}
+
+.monaco-editor span {
+    display: inline-block;
+}
+
+/* Make code runnable sections work properly */
+.styles__RunnableStyled-sc-1h7fzkd-0 {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+    overflow: hidden;
+}
+
+/* Style the code editor buttons */
+.styles__ButtonsContainer-sc-1h7fzkd-2 {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+.styles__ButtonsContainer-sc-1h7fzkd-2 button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.styles__ButtonsContainer-sc-1h7fzkd-2 button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Fix links to use relative paths instead of educative.io URLs */
+.styles__Link-sc-1j2nu8t-8[href^="https://www.educative.io/courses/"] {
+    pointer-events: none;
+}
+
+/* Add custom JavaScript to fix navigation */
+.custom-js-loaded {
+    display: none;
+}

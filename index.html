@@ -3,23 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn coding patterns and algorithms with this educational platform based on Grokking the Coding Interview">
+    <meta name="theme-color" content="#4a90e2">
     <title>Grokking the Coding Interview - Learning Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    
+    <style>
+        #test-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            text-shadow: 1px 1px 2px black;
+        }
+        #test-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #test-button:hover {
+            background: #45a049;
+        }
+        
+        /* Add loading animation */
+        .loading-animation {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading overlay -->
+    <div id="loading-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+        <div class="loading-animation"></div>
+    </div>
+    
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h2>Coding Patterns</h2>
-                <button id="toggleSidebar" aria-label="Toggle Sidebar">☰</button>
+                <button id="toggleSidebar" name="toggleSidebar" aria-label="Toggle Sidebar">☰</button>
             </div>
             <div class="patterns-list" id="patternsList">
                 <!-- Patterns will be loaded here dynamically -->
-                <div class="loading-indicator">Loading patterns...</div>
+                <div class="loading-indicator">
+                    <div class="loading-animation"></div>
+                    <p>Loading patterns...</p>
+                </div>
             </div>
+        </div>
+
+        <!-- Mobile Header (visible only on small screens) -->
+        <div class="mobile-header">
+            <button id="mobileSidebarToggle" name="mobileSidebarToggle" aria-label="Toggle Sidebar">☰</button>
+            <h2>Coding Patterns</h2>
         </div>
 
         <!-- Main Content -->
@@ -38,16 +115,64 @@
                     <p>No commercial intent is involved. All rights belong to their respective owners.</p>
                     <div class="get-started">
                         <p>To get started, select a pattern from the sidebar and choose a problem to study.</p>
+                        <button id="startLearningBtn" name="startLearningBtn" class="start-learning-btn">Start Learning</button>
                     </div>
                 </div>
             </div>
             <div class="content-frame" id="contentFrame">
                 <!-- Content will be loaded here -->
             </div>
+            
+            <!-- Back to top button -->
+            <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">↑</button>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Hide loading overlay when content is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide the loading overlay after a short delay to ensure scripts are loaded
+            setTimeout(function() {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'none';
+                }
+            }, 1000);
+        });
+    </script>
+    <!-- Load highlight.js first -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+     
+     <!-- Load main scripts with error handling -->
+     <script>
+        // Function to load script with error handling
+        function loadScript(src, onload, onerror) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = onload;
+            script.onerror = onerror;
+            document.head.appendChild(script);
+            return script;
+        }
+        
+        // Load script.js first, then custom.js
+        loadScript('script.js', 
+            function() {
+                // After script.js loads, load custom.js
+                loadScript('custom.js', 
+                    function() {
+                        // Scripts loaded successfully
+                    },
+                    function(error) {
+                        console.error('Failed to load custom.js:', error);
+                    }
+                );
+            },
+            function(error) {
+                console.error('Failed to load script.js:', error);
+            }
+        );
+    </script>
+    <script src="responsive.js"></script>
 </body>
-</html> 
+</html>
