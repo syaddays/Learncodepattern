@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sliding Window Pattern - LearnCodePattern</title>
+    <meta name="description" content="Master the sliding window pattern for coding interviews. Learn efficient algorithms and problem-solving techniques."/>
+    <meta name="keywords" content="sliding window, algorithms, coding interview, javascript, programming"/>
+    <meta name="author" content="LearnCodePattern"/>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Sliding Window Pattern - LearnCodePattern"/>
+    <meta property="og:description" content="Master the sliding window pattern for coding interviews. Learn efficient algorithms and problem-solving techniques."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content="LearnCodePattern"/>
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Sliding Window Pattern - LearnCodePattern"/>
+    <meta name="twitter:description" content="Master the sliding window pattern for coding interviews. Learn efficient algorithms and problem-solving techniques."/>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .code-block {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .example {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-button {
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: #2980b9;
+        }
+        
+        .nav-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .tip {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sliding Window Pattern</h1>
+            <p>Master efficient algorithms for array and string problems</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Introduction to Sliding Window Pattern</h2>
+                <p>The sliding window pattern is a computational technique used to solve problems involving arrays or strings. It involves maintaining a subset of elements (the "window") that slides through the data structure to find optimal solutions.</p>
+                
+                <div class="tip">
+                    <strong>Key Concept:</strong> The sliding window technique is particularly useful for problems that ask for finding a subarray or substring that satisfies certain conditions.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>When to Use Sliding Window</h2>
+                <ul>
+                    <li>Finding the longest/shortest subarray with a given sum</li>
+                    <li>Finding the longest substring with k distinct characters</li>
+                    <li>Finding the maximum/minimum sum of a subarray of size k</li>
+                    <li>Problems involving contiguous subarrays or substrings</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Types of Sliding Windows</h2>
+                
+                <h3>1. Fixed Size Window</h3>
+                <p>Used when the window size is predetermined.</p>
+                <div class="code-block">
+// Example: Find maximum sum of subarray of size k
+function maxSumSubarrayOfSizeK(arr, k) {
+    let maxSum = 0;
+    let windowSum = 0;
+    
+    // Calculate sum of first window
+    for (let i = 0; i < k; i++) {
+        windowSum += arr[i];
+    }
+    maxSum = windowSum;
+    
+    // Slide the window
+    for (let i = k; i < arr.length; i++) {
+        windowSum = windowSum - arr[i - k] + arr[i];
+        maxSum = Math.max(maxSum, windowSum);
+    }
+    
+    return maxSum;
+}
+                </div>
+                
+                <h3>2. Variable Size Window</h3>
+                <p>Used when the window size needs to be determined dynamically.</p>
+                <div class="code-block">
+// Example: Find smallest subarray with sum >= target
+function smallestSubarrayWithGivenSum(arr, target) {
+    let windowSum = 0;
+    let minLength = Infinity;
+    let windowStart = 0;
+    
+    for (let windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+        windowSum += arr[windowEnd];
+        
+        while (windowSum >= target) {
+            minLength = Math.min(minLength, windowEnd - windowStart + 1);
+            windowSum -= arr[windowStart];
+            windowStart++;
+        }
+    }
+    
+    return minLength === Infinity ? 0 : minLength;
+}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Common Problems</h2>
+                
+                <h3>1. Maximum Sum Subarray of Size K</h3>
+                <div class="example">
+                    <strong>Problem:</strong> Given an array of positive numbers and a positive number 'k', find the maximum sum of any contiguous subarray of size 'k'.
+                </div>
+                
+                <h3>2. Smallest Subarray with Given Sum</h3>
+                <div class="example">
+                    <strong>Problem:</strong> Given an array of positive numbers and a positive number 's', find the length of the smallest contiguous subarray whose sum is greater than or equal to 's'.
+                </div>
+                
+                <h3>3. Longest Substring with K Distinct Characters</h3>
+                <div class="example">
+                    <strong>Problem:</strong> Given a string, find the length of the longest substring in it with no more than k distinct characters.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Time and Space Complexity</h2>
+                <ul>
+                    <li><strong>Time Complexity:</strong> O(n) - Each element is visited at most twice</li>
+                    <li><strong>Space Complexity:</strong> O(1) - Only a constant amount of extra space is used</li>
+                </ul>
+                
+                <div class="warning">
+                    <strong>Important:</strong> The sliding window technique is most effective when the problem involves finding optimal subarrays or substrings with specific properties.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Practice Problems</h2>
+                <ol>
+                    <li>Maximum Sum Subarray of Size K (Easy)</li>
+                    <li>Smallest Subarray with Given Sum (Easy)</li>
+                    <li>Longest Substring with K Distinct Characters (Medium)</li>
+                    <li>Fruits into Baskets (Medium)</li>
+                    <li>No-repeat Substring (Hard)</li>
+                    <li>Longest Substring with Same Letters after Replacement (Hard)</li>
+                    <li>Longest Subarray with Ones after Replacement (Hard)</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="#" class="nav-button" onclick="previousPage()">← Previous</a>
+            <a href="#" class="nav-button" onclick="nextPage()">Next →</a>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2024 LearnCodePattern. All rights reserved.</p>
+        </div>
+    </div>
+    
+    <script>
+        function previousPage() {
+            // Navigation logic for previous page
+            alert('Previous page functionality would be implemented here');
+        }
+        
+        function nextPage() {
+            // Navigation logic for next page
+            alert('Next page functionality would be implemented here');
+        }
+        
+        // Add any additional JavaScript functionality here
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Sliding Window Pattern page loaded');
+        });
+    </script>
+</body>
+</html>
