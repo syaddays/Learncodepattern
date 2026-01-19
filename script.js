@@ -9,7 +9,14 @@ function saveCompletionStatus() {
 // Function to update progress counter for a pattern
 function updateProgress(patternId, questionsCount, progressElement) {
     let completedQuestions = 0;
-    const pattern = patternsData[patternId];
+    const pattern = window.patternsData?.[patternId];
+
+    if (!pattern) {
+        if (progressElement) {
+            progressElement.textContent = `0/${questionsCount} completed`;
+        }
+        return;
+    }
     
     pattern.problems.forEach(problem => {
         if (completionStatus[`${patternId}-${problem.id}`]) {
